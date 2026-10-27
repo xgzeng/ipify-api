@@ -52,6 +52,9 @@ jobs:
             exit 1
           fi
           sed -i "1c\\ipify-api (${version}-1) unstable; urgency=medium" debian/changelog
+          # dh-golang maps standard library files to Debian packages, so use
+          # Ubuntu's packaged Go instead of the toolchain installed by setup-go.
+          export PATH=/usr/bin:/bin
           dpkg-buildpackage --build=binary --unsigned-source --unsigned-changes
           find .. -maxdepth 1 -type f -name 'ipify-api_*.deb' -exec cp {} dist/ \;
 
