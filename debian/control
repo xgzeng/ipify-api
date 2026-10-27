@@ -3,6 +3,7 @@ Section: net
 Priority: optional
 Maintainer: XiaoGuang Zeng <xgzeng@gmail.com>
 Build-Depends:
+ build-essential,
  debhelper-compat (= 13),
  dh-sequence-golang,
  golang-any,
