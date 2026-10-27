@@ -1,0 +1,20 @@
+Source: ipify-api
+Section: net
+Priority: optional
+Maintainer: XiaoGuang Zeng <xgzeng@gmail.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-golang,
+ golang-any,
+ golang-github-julienschmidt-httprouter-dev,
+ golang-github-rs-cors-dev
+Standards-Version: 4.7.4
+Homepage: https://www.ipify.org
+Rules-Requires-Root: no
+XS-Go-Import-Path: github.com/rdegges/ipify-api
+
+Package: ipify-api
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, systemd
+Description: public IP address API server
+ ipify-api is a small HTTP service that returns the caller's public IP address.

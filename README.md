@@ -76,6 +76,29 @@ go build
 This will create the `ipify-api` binary in the current directory that you can
 use for testing.
 
+## Building a Debian package
+
+On Debian or a Debian-based system, install the packaging tools and Go
+dependencies, then build the binary package from the repository root:
+
+```bash
+sudo apt install build-essential debhelper dh-golang golang-any \
+  golang-github-julienschmidt-httprouter-dev golang-github-rs-cors-dev
+dpkg-buildpackage -us -uc -b
+```
+
+The resulting `.deb` is written to the parent directory.
+
+Installing the package installs and enables the `ipify-api` systemd service,
+which listens on port 3000 by default. Start it with:
+
+```bash
+sudo systemctl enable --now ipify-api
+```
+
+To change the port, set `Environment=PORT=<port>` in a systemd drop-in for
+`ipify-api.service`, then restart the service.
+
 
 ## Deploying ipify
 

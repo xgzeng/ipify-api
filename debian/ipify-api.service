@@ -1,0 +1,26 @@
+[Unit]
+Description=ipify public IP address API
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+Environment=PORT=3000
+ExecStart=/usr/bin/ipify-api
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=strict
+RestrictAddressFamilies=AF_INET AF_INET6
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

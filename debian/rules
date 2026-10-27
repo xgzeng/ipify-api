@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+export GO111MODULE = off
+export DH_GOLANG_BUILDPKG = github.com/rdegges/ipify-api
+
+%:
+	dh $@ --builddirectory=_build --buildsystem=golang
+
+override_dh_auto_install:
+	dh_auto_install -- --no-source
