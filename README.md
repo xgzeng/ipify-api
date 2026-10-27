@@ -63,17 +63,14 @@ To develop and build ipify, you'll need to have the Go programming language
 setup on your computer. If you don't, you can read more about it here:
 https://golang.org/
 
-Once you have Go installed, you'll need to clone this project into your
-computer's GOPATH. For me, this means I'll typically do something like:
+Once you have Go installed, clone this repository and build it from its
+directory. Go modules manage the dependencies, so the project can live outside
+your GOPATH:
 
 ```bash
-$ git clone https://github.com/rdegges/ipify-api.git ~/go/src/github.com/rdegges/ipify-api
-```
-
-To build the project, change to the project directory and run:
-
-```bash
-$ go build
+git clone https://github.com/rdegges/ipify-api.git
+cd ipify-api
+go build
 ```
 
 This will create the `ipify-api` binary in the current directory that you can
