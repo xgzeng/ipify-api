@@ -99,6 +99,30 @@ sudo systemctl enable --now ipify-api
 To change the port, set `Environment=PORT=<port>` in a systemd drop-in for
 `ipify-api.service`, then restart the service.
 
+## Configuring Caddy as a reverse proxy
+
+Point your domain's DNS `A` and/or `AAAA` record at the server running Caddy.
+Add a site block to `/etc/caddy/Caddyfile`, replacing `api.example.com` with
+your domain:
+
+```caddyfile
+api.example.com {
+    reverse_proxy 127.0.0.1:3000
+}
+```
+
+The API listens on port 3000 by default. Keep that port closed to public traffic
+so clients connect through Caddy. Reload Caddy after changing the file:
+
+```bash
+sudo systemctl reload caddy
+```
+
+When the domain resolves to the server and ports 80 and 443 are reachable,
+Caddy obtains and renews HTTPS certificates automatically and redirects HTTP
+requests to HTTPS. See the [Caddy reverse proxy guide](https://caddyserver.com/docs/quick-starts/reverse-proxy)
+for details.
+
 
 ## Deploying ipify
 
